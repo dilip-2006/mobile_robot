@@ -1,7 +1,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
+from launch.actions import ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler, LogInfo
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
@@ -39,9 +39,37 @@ def generate_launch_description():
         arguments=['-topic', 'robot_description', '-entity', 'my_bot', '-z', '0.5'],
         output='screen',
     )
+    
+    # Gesture Control Node
+    gesture_node = Node(
+        package='mobile_robot',
+        executable='gesture_control',
+        output='screen',
+    )
+
+    welcome_msg = LogInfo(msg="""
+=========================================================
+  __  __  ___  ____ ___ _     _____
+ |  \/  |/ _ \| __ )_ _| |   | ____|
+ | |\/| | | | |  _ \| || |   |  _|
+ | |  | | |_| | |_) | || |___| |___
+ |_|  |_|\___/|____/___|_____|_____|
+
+  ____  ____  ____   ___ _____
+ |  _ \/  _ \| __ ) / _ \_   _|
+ | |_) | | | |  _ \| | | || |
+ |  _ <| |_| | |_) | |_| || |
+ |_| \_\\___/|____/ \___/ |_|
+
+  Gesture Controlled  Robot in Gazebo
+  By Dilip Kumar
+=========================================================
+""")
 
     return LaunchDescription([
+        welcome_msg,
         gazebo,
         robot_state_publisher,
         spawn_entity,
+        gesture_node,
     ])
