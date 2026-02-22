@@ -63,7 +63,7 @@ def generate_launch_description():
 
   Gesture Controlled  Robot in Gazebo
   By Dilip Kumar
-=========================================================
+============================================================
 """)
 
     return LaunchDescription([
