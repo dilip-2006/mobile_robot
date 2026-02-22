@@ -184,26 +184,6 @@ ros2 topic echo /cmd_vel
 
 ---
 
-## 📁 Package Structure
-
-```
-mobile_robot/
-├── launch/
-│   └── gazebo_gesture.launch.py   # Main launch file
-├── mobile_robot/
-│   ├── __init__.py
-│   └── gesture_control.py         # Core gesture control + HUD node
-├── urdf/
-│   └── robot.urdf.xacro           # Robot model definition
-├── resource/
-│   └── mobile_robot
-├── package.xml                    # ROS 2 package manifest
-├── setup.py                       # Package install configuration
-├── setup.cfg
-└── README.md                      # This file
-```
-
----
 
 ## 🛠️ Troubleshooting
 
